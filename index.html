@@ -5,158 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Onsamans Project Center</title>
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 0; background: #000; color: #fff; text-align: center; }
-        #main-display, #seo-display { display: none; padding: 50px 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: #00d4ff; font-size: 2.5rem; }
-        .cta-button { display: inline-block; background: #00d4ff; color: #000; padding: 15px 30px; 
-                      border-radius: 50px; font-weight: bold; text-decoration: none; margin-top: 20px; }
-        .report-box { background: #1a1a1a; padding: 25px; border-radius: 15px; border: 1px solid #333; margin: 30px 0; text-align: left; }
+        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; margin: 0; padding: 20px; background: #0f172a; color: #f1f5f9; }
+        .container { max-width: 1000px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; }
+        h1 { color: #38bdf8; text-align: center; margin-bottom: 10px; font-size: 2rem; }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; }
+        
+        .main-btn { 
+            display: block; width: 300px; margin: 20px auto; padding: 18px; 
+            background: linear-gradient(135deg, #0284c7, #0369a1); 
+            color: #fff; text-align: center; text-decoration: none; 
+            border-radius: 12px; font-weight: bold; font-size: 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+        }
+        .main-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6); }
+
+        .link-section { margin-top: 50px; border-top: 1px solid #334155; padding-top: 30px; }
+        h2 { font-size: 1.4rem; color: #e2e8f0; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid #38bdf8; }
+        
+        .link-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+            gap: 12px; 
+            margin-bottom: 40px;
+        }
+        .link-grid a { 
+            display: block; padding: 12px; 
+            background: #334155; border: 1px solid #475569; 
+            border-radius: 8px; text-decoration: none; 
+            color: #cbd5e1; font-size: 0.9rem; text-align: center;
+            transition: all 0.2s;
+        }
+        .link-grid a:hover { 
+            background: #38bdf8; color: #0f172a; 
+            border-color: #38bdf8; font-weight: bold;
+        }
+        
+        /* 위키 강조 스타일 */
+        .wiki-special { background: #1e293b !important; border: 2px solid #38bdf8 !important; color: #38bdf8 !important; font-weight: bold; }
+
+        footer { text-align: center; margin-top: 50px; color: #64748b; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <div id="main-display">
-        <div class="container">
-            <h1>Onsamans Project Center</h1>
-            <p style="font-size: 1.2rem;">9,000개 이상의 실시간 상권 분석 리포트 운영 중</p>
-            <a href="https://playzone.clickn.co.kr" class="cta-button">Playzone 본진 방문하기</a>
+<div class="container">
+    <h1>🌐 Onsamans Project Center</h1>
+    <p class="subtitle">9,000개 이상의 실시간 상권 분석 리포트 통합 가이드</p>
+    
+    <a href="https://playzone.clickn.co.kr" class="main-btn">🚀 Playzone 공식 본진 방문</a>
+
+    <div class="link-section">
+        <h2>📖 핵심 위키 가이드 (Wiki)</h2>
+        <div class="link-grid">
+            <a href="https://github.com/seohuis211-droid/onsamans/wiki/Home" class="wiki-special">🏠 Wiki Home</a>
+            <a href="https://github.com/seohuis211-droid/onsamans/wiki/soops-aslive" class="wiki-special">📝 soops aslive 리포트</a>
         </div>
     </div>
 
-    <div id="seo-display">
-        <div class="container" id="dynamic-content"></div>
+    <div class="link-section">
+        <h2>📊 전국 상권 분석 리포트 (게시판)</h2>
+        <div id="discussion-links" class="link-grid"></div>
     </div>
 
-    <script>
-        // 형이 짠 완벽한 매핑 테이블 (무삭제 풀버전)
-        const regionMap = {
-            "gyodae": "교대", "sinnonhyeon": "신논현", "yangjae": "양재", "samsung": "삼성",
-            "seolleung": "선릉", "nonhyeon": "논현", "yeoksam": "역삼", "itaewon": "이태원",
-            "gangnam": "강남", "jongno": "종로", "sadang": "사당", "geondae": "건대",
-            "bundang": "분당", "yatap": "야탑", "seohyun": "서현", "jeongjadong": "정자동",
-            "seongnam": "성남", "sillim": "신림", "jonggak": "종각", "myeongdong": "명동",
-            "pangyo": "판교", "sunae": "수내", "migeum": "미금", "jukjeon": "죽전",
-            "yeouido": "여의도", "yeongdeungpo": "영등포", "guro": "구로", "daelim": "대림",
-            "dongjak": "동작", "hapjeong": "합정", "yongsan": "용산", "hongdae": "홍대",
-            "sinchon": "신촌", "gangseo": "강서", "yeonsinnae": "연신내", "magok": "마곡",
-            "balsan": "발산", "hwagok": "화곡", "kkachisan": "까치산", "incheon": "인천",
-            "juan": "주안", "seokbawi": "석바위", "yeonsudong": "연수동", "michuhol": "미추홀",
-            "bucheon": "부천", "bupyeong": "부평", "uijeongbu": "의정부", "apgujeong": "압구정",
-            "sinsa": "신사", "jamwondong": "잠원동", "banpo": "반포", "bangbae": "방배",
-            "isu": "이수", "eonju": "언주", "cheongdam": "청담", "daechidong": "대치동",
-            "dogok": "도곡", "jamsil": "잠실", "songpa": "송파", "seokchon": "석촌",
-            "garakdong": "가락동", "bangidong": "방이동", "bongcheondong": "봉천동",
-            "wangsimni": "왕십리", "euljiro": "을지로", "dongmyo": "동묘", "chungmuro": "충무로",
-            "gwanghwamun": "광화문", "janghanpyeong": "장한평", "dapsimni": "답십리",
-            "ilsan": "일산", "tanhyeon": "탄현", "madu": "마두", "baekseok": "백석",
-            "paju": "파주", "goyang": "고양", "lapesta": "라페스타", "janghangdong": "장항동",
-            "gimpo": "김포", "ingyedong": "인계동", "suwon": "수원", "gwanggyo": "광교", 
-            "yeongtong": "영통", "dongtan": "동탄", "maetandong": "매탄동", "maesandong": "매산동", 
-            "mangpodong": "망포동", "hyangnam": "향남", "singaldong": "신갈동", "giheung": "기흥", 
-            "gunpo": "군포", "osan": "오산", "gwonseondong": "권선동", "hwaseodong": "화서동", 
-            "beomgye": "범계", "geumgokdong": "금곡동", "yongin": "용인", "seoul": "서울", 
-            "changdong": "창동", "cheolsan": "철산", "nowon": "노원", "guri": "구리", 
-            "mapo": "마포", "idae": "이대", "dangsan": "당산", "seodaemun": "서대문", 
-            "guuidong": "구의동", "jayangdong": "자양동", "gwangjin": "광진구"
-        };
+    <footer>
+        &copy; 2026 Onsamans Project. All rights reserved.
+    </footer>
+</div>
 
-        const keywordMap = {
-            "public": "퍼블릭", "hyperpublic": "하이퍼블릭", "shirtsroom": "셔츠룸",
-            "fullsalon": "풀싸롱", "roomsalong": "룸싸롱", "noraebang": "노래방",
-            "karaoke": "가라오케", "touchroom": "터치룸", "roombbang": "룸빵",
-            "room": "룸", "jjomo": "쩜오", "noraeppa": "노래빠", "yuheung": "유흥",
-            "yuheungjujeom": "유흥주점", "hyper": "하퍼", "tenpro": "텐프로", "tencafe": "텐카페",
-            "hyperpub": "하이퍼블릭", "pub": "퍼블릭", "sky": "스카이", "hive": "하이브", 
-            "bar": "바", "phantom": "팬텀", "return": "리턴", "creed": "크리드", "apple": "애플", 
-            "louis": "루이", "mooncrystal": "문크리스탈", "ilpro": "일프로", "root": "루트", 
-            "codeone": "코드원", "louise": "루이스", "heritage": "헤리티지", "yacht": "요트", 
-            "frequency": "프리퀀시", "objet": "오브제", "baji": "바지", "alphabet": "알파벳", 
-            "mulligan": "멀리건", "theglory": "더글로리", "someday": "썸데이", "blending": "블렌딩", 
-            "kingsman": "킹스맨", "f1": "F1", "another": "어나더", "label": "라벨", "shiny": "샤이니",
-            "dokkaebi": "도깨비", "impact": "임팩트", "rising": "라이징", "intro": "인트로",
-            "miracle": "미라클", "aone": "에이원", "unique": "유니크", "good": "굿",
-            "siren": "사이렌", "epro": "이프로", "aurora": "오로라", "people": "피플",
-            "gallery": "갤러리", "tambourine": "탬버린", "apt": "아파트", "oscar": "오스카",
-            "wembley": "웸블리", "okay": "오케이", "aura": "아우라", "theopen": "디오픈",
-            "basic": "베이직", "pine": "파인", "contents": "콘텐츠", "white": "화이트",
-            "times": "타임즈", "class": "클래스", "maybe": "메이비", "homerunball": "홈런볼",
-            "mg": "MG", "face": "페이스", "id": "ID", "quality": "퀄리티", "zeus": "제우스",
-            "oneonefive": "원원파이브", "dalto": "달토", "dallineuntokki": "달리는토끼",
-            "runningrabbit": "러닝래빗", "runningraebit": "러닝래빗", "dasoda": "다소다",
-            "dopamine": "도파민", "elite": "엘리트", "trend": "트렌드", "arboretum": "아보레텀",
-            "perfect": "퍼펙트", "worklife": "워크라이프", "bulletproof": "불릿프루프",
-            "youandme": "유앤미", "again": "어게인", "boston": "보스턴", "blackhole": "블랙홀",
-            "flirting": "플러팅", "shirtroom": "셔츠룸"
-        };
+<script>
+    const user = "seohuis211-droid";
+    const repo = "onsamans";
+    const baseUrl = `https://github.com/${user}/${repo}`;
 
-        // 형의 index.js 로직 완벽 이식
-        function parsePath(path) {
-            const hasHyphen = path.includes('-');
-            let region = '', keyword = '';
-            
-            if (hasHyphen) {
-                const parts = path.split('-');
-                region = parts[0];
-                keyword = parts.slice(1).join('-');
-            } else {
-                let matched = '', maxlen = 0;
-                for (const r in regionMap) {
-                    if (path.startsWith(r) && r.length > maxlen) {
-                        matched = r;
-                        maxlen = r.length;
-                    }
-                }
-                if (matched) {
-                    region = matched;
-                    keyword = path.substring(maxlen);
-                } else {
-                    region = path;
-                    keyword = '';
-                }
-            }
-            return { region, keyword };
-        }
+    // 게시판(Discussions) 1~90개 링크 자동 생성
+    const dGrid = document.getElementById('discussion-links');
+    for (let i = 1; i <= 90; i++) {
+        const a = document.createElement('a');
+        a.href = `${baseUrl}/discussions/${i}`;
+        a.textContent = `리포트 Part ${i}`;
+        dGrid.appendChild(a);
+    }
+</script>
 
-        function baseKeyword(keyword) {
-            return keyword.endsWith('s') ? keyword.slice(0, -1) : keyword;
-        }
-
-        function init() {
-            const path = window.location.pathname;
-            const parts = path.split('/').filter(Boolean);
-            const lastPart = parts[parts.length - 1];
-
-            // 대문 표시 조건
-            if (!lastPart || lastPart === 'onsamans' || lastPart === 'index.html') {
-                document.getElementById('main-display').style.display = 'block';
-            } 
-            // 상세 페이지 표시 조건
-            else {
-                const parsed = parsePath(lastPart);
-                const bKey = baseKeyword(parsed.keyword);
-                
-                const rKor = regionMap[parsed.region] || parsed.region;
-                const kKor = keywordMap[bKey] || bKey;
-
-                document.getElementById('seo-display').style.display = 'block';
-                document.title = `${rKor} ${kKor} 프리미엄 리포트`;
-                
-                document.getElementById('dynamic-content').innerHTML = `
-                    <h1>👑 ${rKor} ${kKor} 상세 리포트</h1>
-                    <div class="report-box">
-                        <p><strong>📍 지역:</strong> ${rKor}</p>
-                        <p><strong>🏢 업종/상호:</strong> ${kKor}</p>
-                        <p style="color: #00d4ff;">✔️ GitHub Authority Transfer 100% 진행 중</p>
-                        <p>✔️ 최신 주대 정보 및 실시간 예약 현황이 본진과 동기화되었습니다.</p>
-                    </div>
-                    <p>더 상세한 가이드와 사진은 아래 공식 페이지에서 확인하세요.</p>
-                    <a href="https://playzone.clickn.co.kr/pages/${lastPart}" class="cta-button" target="_blank">본진(${rKor} ${kKor})으로 이동</a>
-                `;
-            }
-        }
-
-        window.onload = init;
-    </script>
 </body>
 </html>
