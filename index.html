@@ -5,88 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Onsamans Project Center</title>
     <style>
-        body { font-family: 'Pretendard', sans-serif; line-height: 1.6; margin: 0; padding: 20px; background: #0f172a; color: #f1f5f9; }
-        .container { max-width: 1000px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #334155; }
-        h1 { color: #38bdf8; text-align: center; margin-bottom: 10px; font-size: 2rem; }
-        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; }
-        
-        .main-btn { 
-            display: block; width: 300px; margin: 20px auto; padding: 18px; 
-            background: linear-gradient(135deg, #0284c7, #0369a1); 
-            color: #fff; text-align: center; text-decoration: none; 
-            border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
-        }
-        .main-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6); }
-
-        .link-section { margin-top: 50px; border-top: 1px solid #334155; padding-top: 30px; }
-        h2 { font-size: 1.4rem; color: #e2e8f0; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid #38bdf8; }
-        
-        .link-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-            gap: 12px; 
-            margin-bottom: 40px;
-        }
-        .link-grid a { 
-            display: block; padding: 12px; 
-            background: #334155; border: 1px solid #475569; 
-            border-radius: 8px; text-decoration: none; 
-            color: #cbd5e1; font-size: 0.9rem; text-align: center;
-            transition: all 0.2s;
-        }
-        .link-grid a:hover { 
-            background: #38bdf8; color: #0f172a; 
-            border-color: #38bdf8; font-weight: bold;
-        }
-        
-        /* 위키 강조 스타일 */
-        .wiki-special { background: #1e293b !important; border: 2px solid #38bdf8 !important; color: #38bdf8 !important; font-weight: bold; }
-
-        footer { text-align: center; margin-top: 50px; color: #64748b; font-size: 0.85rem; }
+        body { font-family: 'Apple SD Gothic Neo', sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #0366d6; text-align: center; border-bottom: 2px solid #0366d6; padding-bottom: 10px; }
+        .sub-text { text-align: center; font-weight: bold; color: #555; margin-bottom: 30px; }
+        .main-btn { display: block; background: #2ea44f; color: white; text-decoration: none; text-align: center; padding: 15px; border-radius: 8px; font-weight: bold; margin-bottom: 15px; font-size: 1.1em; }
+        .main-btn:hover { background: #2c974b; }
+        .wiki-section { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .report-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 20px; }
+        .report-item { background: #fff; border: 1px solid #eee; padding: 10px; text-align: center; border-radius: 5px; text-decoration: none; color: #0366d6; font-size: 0.9em; font-weight: bold; }
+        .report-item:hover { background: #f1f8ff; border-color: #0366d6; }
+        footer { text-align: center; margin-top: 50px; color: #888; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
-<div class="container">
     <h1>🌐 Onsamans Project Center</h1>
-    <p class="subtitle">9,000개 이상의 실시간 상권 분석 리포트 통합 가이드</p>
-    
-    <a href="https://playzone.clickn.co.kr" class="main-btn">🚀 Playzone 공식 본진 방문</a>
+    <p class="sub-text">9,000개 이상의 실시간 상권 분석 리포트 통합 가이드</p>
 
-    <div class="link-section">
-        <h2>📖 핵심 위키 가이드 (Wiki)</h2>
-        <div class="link-grid">
-            <a href="https://github.com/seohuis211-droid/onsamans/wiki/Home" class="wiki-special">🏠 Wiki Home</a>
-            <a href="https://github.com/seohuis211-droid/onsamans/wiki/soops-aslive" class="wiki-special">📝 soops aslive 리포트</a>
-        </div>
+    <a href="https://playzone.clickn.co.kr/" target="_blank" class="main-btn">🚀 Playzone 공식 본진 방문</a>
+    <a href="https://korealocalguide.isweb.co.kr/" target="_blank" class="main-btn" style="background: #0366d6;">📍 Korea Local Guide 대장 사이트</a>
+
+    <div class="wiki-section">
+        <h3>📖 핵심 위키 가이드 (Wiki)</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li>🏠 <a href="https://github.com/seohuis211-droid/onsamans/wiki" style="color:#0366d6; text-decoration:none;">Wiki Home 바로가기</a></li>
+            <li>📝 <a href="#" style="color:#0366d6; text-decoration:none;">soops aslive 리포트 상세보기</a></li>
+        </ul>
     </div>
 
-    <div class="link-section">
-        <h2>📊 전국 상권 분석 리포트 (게시판)</h2>
-        <div id="discussion-links" class="link-grid"></div>
+    <h3>📊 전국 상권 분석 리포트 (게시판)</h3>
+    <div class="report-grid">
+        <script>
+            // 형이 작업한 게시판(Discussions) 주소가 있다면 여기에 넣으면 편해!
+            // 지금은 일단 예시 주소로 90개를 쫙 뿌려줄게.
+            for(let i=1; i<=90; i++) {
+                document.write(`<a href="https://github.com/seohuis211-droid/onsamans/discussions" class="report-item" target="_blank">리포트 Part ${i}</a>`);
+            }
+        </script>
     </div>
 
     <footer>
-        &copy; 2026 Onsamans Project. All rights reserved.
+        © 2026 Onsamans Project. All rights reserved.
     </footer>
-</div>
-
-<script>
-    const user = "seohuis211-droid";
-    const repo = "onsamans";
-    const baseUrl = `https://github.com/${user}/${repo}`;
-
-    // 게시판(Discussions) 1~90개 링크 자동 생성
-    const dGrid = document.getElementById('discussion-links');
-    for (let i = 1; i <= 90; i++) {
-        const a = document.createElement('a');
-        a.href = `${baseUrl}/discussions/${i}`;
-        a.textContent = `리포트 Part ${i}`;
-        dGrid.appendChild(a);
-    }
-</script>
 
 </body>
 </html>
